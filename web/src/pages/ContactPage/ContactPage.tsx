@@ -7,7 +7,8 @@ import {
         TextAreaField,
         Submit,
         SubmitHandler,
-        useForm
+        useForm,
+        FormError
 } from '@redwoodjs/forms'
 
 import {
@@ -52,11 +53,8 @@ const ContactPage = () => {
                 <>
                         <Metadata title="Contact" description="Contact page" />
                         <Toaster />
-                        <Form
-                                onSubmit={onSubmit}
-                                config={{ mode: 'onBlur' }}
-                                formMethods={formMethods}
-                        >
+                        <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }} formMethods={formMethods} error={error}>
+                                <FormError error={error} wrapperClassName="form-error" />
                                 <Label name="name" errorClassName="error">Name</Label>
                                 <TextField name="name" validation={{ required: true }} />
                                 <FieldError name="name" className="error" />
@@ -68,7 +66,7 @@ const ContactPage = () => {
                                                 required: true,
                                                 pattern: {
                                                         value: /^[^@]+@[^.]+\..+$/,
-                                                        message: 'Please enter a valid email address',
+                                                        message: 'Please enter a valid email address'
                                                 },
                                         }} />
                                 <FieldError name="email" className="error" />
