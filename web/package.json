@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fsouza/prettierd": "^0.26.2",
+    "@redwoodjs/auth-dbauth-web": "8.8.1",
     "@redwoodjs/forms": "8.8.1",
     "@redwoodjs/router": "8.8.1",
     "@redwoodjs/web": "8.8.1",
