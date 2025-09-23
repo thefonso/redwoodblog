@@ -2,14 +2,19 @@ import { Link, routes } from '@redwoodjs/router'
 
 import type { Post } from 'types/graphql'
 
-const truncate = (text: string, length: number) => {
-  return text.substring(0, length) + '...'
-}
-
 interface Props {
   article: Omit<Post, 'createdAt'>
   summary?: boolean
 }
+
+const truncate = (text: any, length: number): string => {
+  console.log("PING", text)
+  if (!text) return '...' // null check
+  return text.substring(0, length) + '...'
+
+}
+
+
 
 const Article = ({ article, summary = false }: Props) => {
   return (
@@ -22,7 +27,6 @@ const Article = ({ article, summary = false }: Props) => {
       <div className="mt-2 text-gray-900 font-light">
         {summary ? truncate(article.body, 100) : article.body}
       </div>
-      <div>Posted at: {article.createdAt}</div>
     </article>
   )
 }

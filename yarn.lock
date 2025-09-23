@@ -19731,6 +19731,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@fsouza/prettierd": "npm:^0.26.2"
     "@redwoodjs/auth-dbauth-setup": "npm:8.8.1"
     "@redwoodjs/cli-storybook-vite": "npm:8.8.1"
     "@redwoodjs/core": "npm:8.8.1"
