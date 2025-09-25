@@ -3,44 +3,53 @@ import { Link, routes } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
 
 type BlogLayoutProps = {
-        children?: React.ReactNode
+  children?: React.ReactNode
 }
 
 const BlogLayout = ({ children }: BlogLayoutProps) => {
-        const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { isAuthenticated, currentUser, logOut } = useAuth()
 
-        return (<>
-                <header>
-                        <div className="flex-between">
-                                <h1><Link to={routes.home()}> Unclefonso Blog</Link></h1>
-                                {isAuthenticated ? (
-                                        <div>
-                                                <span>Logged in as {currentUser.email}</span>{' '}
-                                                <button type="button" onClick={logOut}>
-                                                        Logout
-                                                </button>
-                                        </div>
-                                ) : (
-                                        <Link to={routes.login()}>Login</Link>
-                                )}
-                        </div>
-                        <nav>
-                                <ul>
-                                        <li>
-                                                <Link to={routes.home()}>Home</Link>
-                                        </li>
-                                        <li>
-                                                <Link to={routes.about()}>About</Link>
-                                        </li>
-                                        <li>
-                                                <Link to={routes.contact()}>contact</Link>
-                                        </li>
-
-                                </ul>
-                        </nav>
-                </header>
-                <main>{children}</main>
-        </>)
+  return (<>
+    <header className="relative flex justify-between items-center py-4 px-8 bg-blue-700 text-white">
+      <div>
+        <h1 className="text-5xl font-semibold tracking-tight">
+          <Link className="text-blue-400 hover:text-blue-100 transition duration-100" to={routes.home()}>
+            Unclefonso Blog
+          </Link>
+        </h1>
+      </div>
+      <nav>
+        <ul className="relative flex items-center front-light">
+          <li>
+            <Link className="py-2 px-4 hover:bg-blue-600 transition duration-100 rounded" to={routes.home()}>Home</Link>
+          </li>
+          <li>
+            <Link className="py-2 px-4 hover:bg-blue-600 transition duration-100 rounded" to={routes.about()}>About</Link>
+          </li>
+          <li>
+            <Link className="py-2 px-4 hover:bg-blue-600 transition duration-100 rounded" to={routes.contact()}>contact</Link>
+          </li>
+          <li>
+            {isAuthenticated ? (
+              <div>
+                <button className="py-2 px-4" type="button" onClick={logOut}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link className="py-2 px-4" to={routes.login()}>Login</Link>
+            )}
+          </li>
+        </ul>
+        {isAuthenticated && (
+          <div className="absolute bottom-1 right-0 mr-12 text-xs text-blue-300">
+            {currentUser.email}
+          </div>
+        )}
+      </nav>
+    </header>
+    <main className="max-w-4xl mx-auto p-12 bg-white shadow rounded-b">{children}</main>
+  </>)
 }
 
 export default BlogLayout
