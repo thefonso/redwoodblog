@@ -3,7 +3,7 @@ import { Link, routes } from '@redwoodjs/router'
 import type { Post } from 'types/graphql'
 
 interface Props {
-  article: Omit<Post, 'createdAt'>
+  article?: Omit<Post, 'createdAt'>
   summary?: boolean
 }
 
@@ -17,6 +17,9 @@ const truncate = (text: any, length: number): string => {
 
 
 const Article = ({ article, summary = false }: Props) => {
+  if (!article) {
+    return <div> Article not found</div>
+  }
   return (
     <article className="mt-10">
       <header>
