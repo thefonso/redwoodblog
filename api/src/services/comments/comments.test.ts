@@ -1,6 +1,7 @@
 import type { Comment } from '@prisma/client'
 
 import { comments, createComment } from './comments'
+import { db } from 'src/lib/db'
 import type { StandardScenario, PostOnlyScenario } from './comments.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -10,11 +11,16 @@ import type { StandardScenario, PostOnlyScenario } from './comments.scenarios'
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
 describe('comments', () => {
-  scenario('returns all comments', async (scenario: StandardScenario) => {
-    const result = await comments()
+  scenario('returns all comments for a single post from the database',
+    async (scenario: StandardScenario) => {
+      const result = await comments({ postId: scenario.comment.jane.postId })
+      const post = await db.post.findUnique({
+        where: { id: scenario.comment.jane.postId },
+        include: { comments: true },
+      })
+      expect(result.length).toEqual(post.comments.length)
+    })
 
-    expect(result.length).toEqual(Object.keys(scenario.comment).length)
-  })
   scenario(
     'postOnly',
     'creates a new comment',

@@ -4,18 +4,28 @@ import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.CommentCreateArgs>({
   comment: {
-    one: {
+    jane: {
       data: {
-        name: 'String',
-        body: 'String',
-        post: { create: { title: 'String', body: 'String' } },
+        name: 'Jane Doe',
+        body: 'I like trees',
+        post: {
+          create: {
+            title: 'Redwood Leaves',
+            body: 'The quick brown fox jumped over the lazy dog.',
+          },
+        },
       },
     },
-    two: {
+    john: {
       data: {
-        name: 'String',
-        body: 'String',
-        post: { create: { title: 'String', body: 'String' } },
+        name: 'John Doe',
+        body: 'Hug a tree today',
+        post: {
+          create: {
+            title: 'Root Systems',
+            body: 'The five boxing wizards jump quickly.',
+          },
+        },
       },
     },
   },
