@@ -20,5 +20,15 @@ export const standard = defineScenario<Prisma.CommentCreateArgs>({
     },
   },
 })
-
-export type StandardScenario = ScenarioData<Comment, 'comment'>
+export const postOnly = defineScenario<Prisma.PostCreateArgs>({
+  post: {
+    bark: {
+      data: {
+        title: 'Bark',
+        body: "A tree's bark is worse than its bite",
+      },
+    },
+  },
+})
+export type StandardScenario = typeof standard
+export type PostOnlyScenario = typeof postOnly

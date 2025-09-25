@@ -17,3 +17,19 @@ export const Comment: CommentRelationResolvers = {
     return db.comment.findUnique({ where: { id: root?.id } }).post()
   },
 }
+
+export const deleteComment = ({ id }: Prisma.CommentWhereUniqueInput) => {
+  return db.comment.delete({
+    where: { id },
+  })
+}
+
+interface CreateCommentArgs {
+  input: Prisma.CommentCreateInput
+}
+
+export const createComment = ({ input }: CreateCommentArgs) => {
+  return db.comment.create({
+    data: input,
+  })
+}

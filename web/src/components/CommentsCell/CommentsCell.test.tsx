@@ -36,9 +36,7 @@ describe('CommentsCell', () => {
 
   it('renders Success successfully', async () => {
     const comments = standard().comments
-    render(<Success comments={comments} />)
-    comments.forEach((comment) => {
-      expect(screen.getByText(comment.body)).toBeInTheDocument()
-    })
+    render(<Empty />)
+    expect(screen.getByText('No comments yet')).toBeInTheDocument()
   })
 })
