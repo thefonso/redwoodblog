@@ -6,6 +6,7 @@ export const standard = (/* vars, { ctx, req } */) => ({
       id: 42,
       name: 'Rob Cameron',
       body: 'First comment',
+      postId: 1,
       createdAt: '2025-09-02T12:34:56Z',
     },
     {
@@ -13,6 +14,7 @@ export const standard = (/* vars, { ctx, req } */) => ({
       id: 43,
       name: 'David Price',
       body: 'Second comment',
+      postId: 2,
       createdAt: '2025-09-02T12:34:56Z',
     },
     {
@@ -20,6 +22,7 @@ export const standard = (/* vars, { ctx, req } */) => ({
       id: 44,
       name: 'Uncle Fonso',
       body: 'Third comment',
+      postId: 3,
       createdAt: '2025-09-02T12:34:56Z',
     },
   ],
